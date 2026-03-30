@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Сацук Артём Венедиктович (Satsuk Artem)
+# SPDX-License-Identifier: Apache-2.0
+
 import logging
 from dataclasses import dataclass, field
 from importlib import import_module

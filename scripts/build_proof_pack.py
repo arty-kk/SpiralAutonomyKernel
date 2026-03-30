@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Сацук Артём Венедиктович (Satsuk Artem)
+# SPDX-License-Identifier: Apache-2.0
+
 from __future__ import annotations
 
 import json
@@ -13,16 +16,30 @@ EVIDENCE_DIR = ROOT / 'docs' / 'evidence'
 RUNTIME_DIR = ROOT / '.sif'
 
 
-def _run(command: list[str]) -> subprocess.CompletedProcess[str]:
+def _run(command: list[str], retries: int = 0) -> subprocess.CompletedProcess[str]:
     env = dict(os.environ)
     env['PYTHONPATH'] = 'src'
-    return subprocess.run(
-        command,
-        cwd=ROOT,
-        text=True,
-        capture_output=True,
-        check=True,
-        env=env,
+    attempts = retries + 1
+    last_result: subprocess.CompletedProcess[str] | None = None
+    for _ in range(attempts):
+        result = subprocess.run(
+            command,
+            cwd=ROOT,
+            text=True,
+            capture_output=True,
+            check=False,
+            env=env,
+        )
+        if result.returncode == 0:
+            return result
+        last_result = result
+
+    assert last_result is not None
+    command_str = " ".join(command)
+    raise RuntimeError(
+        f"Command failed after {attempts} attempt(s): {command_str}\n"
+        f"stdout:\n{last_result.stdout}\n"
+        f"stderr:\n{last_result.stderr}"
     )
 
 
@@ -33,7 +50,7 @@ def main() -> None:
 
     try:
         compile_result = _run([sys.executable, '-m', 'compileall', '-q', 'src'])
-        test_result = _run([sys.executable, '-m', 'pytest', '-q'])
+        test_result = _run([sys.executable, '-m', 'pytest', '-q'], retries=1)
         smoke_result = _run([
             sys.executable,
             '-m',

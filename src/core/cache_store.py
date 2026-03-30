@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 Сацук Артём Венедиктович (Satsuk Artem)
+# SPDX-License-Identifier: Apache-2.0
+
 from __future__ import annotations
 
 import asyncio
@@ -241,7 +244,8 @@ class AsyncCacheStore:
     async def _load_cache_from_db(self) -> Dict[str, Any]:
         db = self._require_db()
         payload: Dict[str, Any] = {}
-        async with db.execute("SELECT cache_key, value_json FROM cache_entries") as cursor:
+        cursor = await db.execute("SELECT cache_key, value_json FROM cache_entries")
+        async with cursor:
             async for row in cursor:
                 try:
                     payload[row["cache_key"]] = json.loads(row["value_json"])
