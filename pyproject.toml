@@ -7,9 +7,13 @@ name = "spiral-autonomy-kernel"
 version = "1.0.0"
 description = "Persistent, policy-bounded self-evolution runtime for LLM-based systems"
 readme = "README.md"
+license = { file = "LICENSE" }
 requires-python = ">=3.10"
 dependencies = [
     "httpx>=0.27,<1",
+]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
 ]
 
 [project.optional-dependencies]
