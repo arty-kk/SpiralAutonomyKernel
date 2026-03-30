@@ -25,11 +25,17 @@ Row = sqlite3.Row
 
 
 class Cursor:
-    def __init__(self, connection: 'Connection', sql: str, parameters: Iterable[Any] | None = None) -> None:
+    def __init__(
+        self,
+        connection: 'Connection',
+        sql: str,
+        parameters: Iterable[Any] | None = None,
+        prefetched_rows: list[Any] | None = None,
+    ) -> None:
         self._connection = connection
         self._sql = sql
         self._parameters = tuple(parameters or ())
-        self._rows: list[Any] | None = None
+        self._rows: list[Any] | None = prefetched_rows
         self._index = 0
 
     async def _ensure_rows(self) -> list[Any]:
@@ -103,7 +109,14 @@ class Connection:
 
     async def execute(self, sql: str, parameters: Iterable[Any] | None = None) -> Cursor:
         await self._ensure_open()
-        return Cursor(self, sql, parameters)
+        async with self._lock:
+            def _run() -> list[Any]:
+                assert self._conn is not None
+                sqlite_cursor = self._conn.execute(sql, tuple(parameters or ()))
+                return list(sqlite_cursor.fetchall())
+
+            rows = await asyncio.to_thread(_run)
+        return Cursor(self, sql, parameters, prefetched_rows=rows)
 
     async def executemany(self, sql: str, seq_of_parameters: Iterable[Iterable[Any]]) -> None:
         await self._ensure_open()
