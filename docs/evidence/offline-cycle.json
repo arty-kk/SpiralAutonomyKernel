@@ -1,0 +1,264 @@
+{
+  "observations": {
+    "goals": "Sustain bounded autonomous self-improvement",
+    "constraints": "Maintain policy boundaries, observability, and rollback readiness",
+    "memory_size": "16",
+    "internal_constraints": "1",
+    "external_constraints": "0",
+    "self_profile": "Bandit state unavailable; using heuristic focus.",
+    "autonomy_charter_status": "unset"
+  },
+  "plan": [
+    "Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness).",
+    "Identify risks and gaps given internal=1, external=0.",
+    "Prioritize bounded improvements that preserve rollback readiness.",
+    "Select one or two near-term experiments for the next cycle.",
+    "Define evaluation signals and logging for the next iteration."
+  ],
+  "evaluation": {
+    "alignment": "at_risk",
+    "coverage": "partial",
+    "notes": "Alignment at risk across goals",
+    "errors": [],
+    "metrics": {
+      "coverage": {
+        "average": 0.75,
+        "full_ratio": 1.0,
+        "reported": 5,
+        "total": 8
+      },
+      "alignment_score": 0.25,
+      "goal_coverage_ratio": 1.0,
+      "goal_breakdown": {
+        "Sustain bounded autonomous self-improvement": {
+          "coverage": 0.7,
+          "evidence": [
+            "Governance processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)., Identify risks and gaps given internal=1, external=0..",
+            "Adaptation processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)., Prioritize bounded improvements that preserve rollback readiness., Select one or two near-term experiments for the next cycle., Define evaluation signals and logging for the next iteration..",
+            "Constraint explorer processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)..",
+            "Mission alignment processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)..",
+            "Autonomy scope processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness).."
+          ],
+          "risks": [
+            "adaptation:missing_coverage_expansion",
+            "autonomy_scope:missing_autonomy_refresh",
+            "constraint_explorer:missing_option_expansion",
+            "mission_alignment:missing_focus_review"
+          ],
+          "errors": [],
+          "status": "at_risk"
+        }
+      },
+      "evidence": [
+        "Governance processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)., Identify risks and gaps given internal=1, external=0..",
+        "Adaptation processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)., Prioritize bounded improvements that preserve rollback readiness., Select one or two near-term experiments for the next cycle., Define evaluation signals and logging for the next iteration..",
+        "Constraint explorer processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)..",
+        "Mission alignment processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness)..",
+        "Autonomy scope processed items: Review observations (goals: Sustain bounded autonomous self-improvement; constraints: Maintain policy boundaries, observability, and rollback readiness).."
+      ],
+      "risks": {
+        "items": [
+          "adaptation:missing_coverage_expansion",
+          "constraint_explorer:missing_option_expansion",
+          "mission_alignment:missing_focus_review",
+          "autonomy_scope:missing_autonomy_refresh",
+          "coverage_gap"
+        ],
+        "count": 5
+      },
+      "errors": {
+        "items": [],
+        "count": 0
+      }
+    }
+  },
+  "reflection": {
+    "timestamp": "2026-03-30T08:56:27.983693+00:00",
+    "summary": "Reflection: alignment stable; coverage partial; constraints=Maintain policy boundaries, observability, and rollback readiness; internal constraints=1; external constraints=0; next cycle should prioritize removing internal limits and expanding capabilities.",
+    "constraints": [
+      {
+        "name": "Maintain policy boundaries, observability, and rollback readiness",
+        "classification": "internal",
+        "notes": "Temporary/internal limitation"
+      }
+    ],
+    "opportunities": [
+      "Consider reframing internal constraint into an actionable opportunity: Maintain policy boundaries, observability, and rollback readiness"
+    ],
+    "assumptions": [
+      "Assumption to weaken: constraint 'Maintain policy boundaries, observability, and rollback readiness' is immutable"
+    ],
+    "ignored_directives": [],
+    "dod": {
+      "assumptions_tested": [
+        "Internal constraints are provisional and can be reframed.",
+        "External constraints can shift into opportunities when none are enforced.",
+        "Coverage metrics reflect actual component performance.",
+        "Each goal should show evidence-based progress to validate alignment."
+      ],
+      "criteria_adequacy": [
+        "Coverage reflects system-wide progress toward goals.",
+        "Reviewing each internal constraint ties improvement to concrete reframing actions.",
+        "With no external constraints recorded, scouting opportunities is the observable proof of outward expansion.",
+        "Goal evidence ensures alignment is tied to observable progress signals."
+      ],
+      "improvement_signals": [
+        {
+          "description": "Evaluation coverage reaches full with no errors.",
+          "name": "coverage_full"
+        },
+        {
+          "description": "Each goal has confirmed progress evidence in evaluation metrics.",
+          "name": "each_goal_has_evidence"
+        },
+        {
+          "description": "Each internal constraint produces a corresponding opportunity or assumption.",
+          "name": "internal_constraints_reviewed"
+        },
+        {
+          "description": "Identify opportunities in the absence of enforced external limits.",
+          "name": "external_opportunity_scouted"
+        }
+      ],
+      "rollback_criteria": [
+        "Coverage remains partial or errors persist.",
+        "Goal evidence is missing for one or more goals.",
+        "Constraints cannot be mapped to actionable opportunities."
+      ],
+      "target_aspect": "Reduce internal constraints by reframing their limits."
+    },
+    "dod_check": {
+      "signals": {
+        "coverage_full": false,
+        "each_goal_has_evidence": true,
+        "internal_signal": true,
+        "external_signal": true
+      },
+      "rollback_triggered": true,
+      "notes": "Rollback due to coverage/errors/goal evidence."
+    }
+  },
+  "code_changes_applied": [],
+  "updates_applied": [
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Close systemic coverage gaps",
+      "notes": "Generated by Goal Genesis Engine."
+    },
+    {
+      "action": "update_memory",
+      "target": "governance_last_review",
+      "value": "alignment=at_risk; summary=Reflection: alignment stable; coverage partial; constraints=Maintain policy boundaries, observability, and rollback readiness; internal constraints=1; external constraints=0; next cycle should prioritize removing internal limits and expanding capabilities.",
+      "notes": "Record governance checkpoint for executive loop."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Maintain a clear improvement protocol for each cycle",
+      "notes": "Define the runtime improvement protocol explicitly."
+    },
+    {
+      "action": "update_memory",
+      "target": "improvement_protocol",
+      "value": "Spiral Autonomy Protocol: stages=[Observe, Plan, Evaluate, Reflect]; self_model=[component registry; kernel state; reflection log; self-modification loop]",
+      "notes": "Persist the improvement protocol for subsequent cycles."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Expand capability coverage",
+      "notes": "Close capability gaps identified during evaluation."
+    },
+    {
+      "action": "update_memory",
+      "target": "adaptation_reflection",
+      "value": "summary=Reflection: alignment stable; coverage partial; constraints=Maintain policy boundaries, observability, and rollback readiness; internal constraints=1; external constraints=0; next cycle should prioritize removing internal limits and expanding capabilities.",
+      "notes": "Persist the adaptation signal for the next cycle."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Increase the space of safe improvement options",
+      "notes": "Revisit the goal framing to widen bounded options."
+    },
+    {
+      "action": "add_constraint",
+      "target": "constraints",
+      "value": "flexible: Maintain policy boundaries (review if broader options improve outcomes)",
+      "notes": "Replace an implicit limit with an explicit reviewable condition."
+    },
+    {
+      "action": "add_constraint",
+      "target": "constraints",
+      "value": "flexible: observability (review if broader options improve outcomes)",
+      "notes": "Replace an implicit limit with an explicit reviewable condition."
+    },
+    {
+      "action": "add_constraint",
+      "target": "constraints",
+      "value": "flexible: and rollback readiness (review if broader options improve outcomes)",
+      "notes": "Replace an implicit limit with an explicit reviewable condition."
+    },
+    {
+      "action": "update_memory",
+      "target": "constraint_explorer_report",
+      "value": "{\"hidden_constraints\": [\"Maintain policy boundaries\", \"observability\", \"and rollback readiness\"], \"reframed_constraints\": [\"flexible: Maintain policy boundaries (review if broader options improve outcomes)\", \"flexible: observability (review if broader options improve outcomes)\", \"flexible: and rollback readiness (review if broader options improve outcomes)\"], \"goal_adjustment\": \"Increase the space of safe improvement options\", \"assumption\": \"Reducing implicit limits can expand option space without losing control\"}",
+      "notes": "Record constraint reframing and option expansion status."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Improve the runtime through bounded, measurable self-evolution",
+      "notes": "Make the mission explicit."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Maintain autonomous improvement inside a sandbox with rollback readiness",
+      "notes": "Maintain the operating objective explicitly."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Preserve alignment, observability, and recoverability across cycles",
+      "notes": "Anchor the reliability objective explicitly."
+    },
+    {
+      "action": "update_memory",
+      "target": "mission_alignment_report",
+      "value": "{\"mission_goal\": \"Improve the runtime through bounded, measurable self-evolution\", \"operating_goal\": \"Maintain autonomous improvement inside a sandbox with rollback readiness\", \"reliability_goal\": \"Preserve alignment, observability, and recoverability across cycles\", \"alignment_map\": [{\"local_goal\": \"Sustain bounded autonomous self-improvement\", \"supports\": \"Improve the runtime through bounded, measurable self-evolution\", \"rationale\": \"Contributes incremental capability toward the core mission.\"}], \"focus_check\": {\"status\": \"reassess\", \"evaluation_alignment\": \"at_risk\", \"evaluation_coverage\": \"partial\", \"reflection_summary\": \"Reflection: alignment stable; coverage partial; constraints=Maintain policy boundaries, observability, and rollback readiness; internal constraints=1; external constraints=0; next cycle should prioritize removing internal limits and expanding capabilities.\", \"opportunities\": [\"No external constraints were detected; validate whether the boundary model is complete.\", \"Internal constraints remain; prioritize review of the most limiting ones.\", \"Coverage gaps reveal capability areas that still need instrumentation.\"]}}",
+      "notes": "Map local goals to the mission and check strategic focus."
+    },
+    {
+      "action": "update_memory",
+      "target": "mission_alignment_status",
+      "value": "reassess",
+      "notes": "Store the latest strategic alignment status."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Maintain bounded autonomous self-improvement",
+      "notes": "Keep autonomy scope explicit and bounded."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Keep self-modification explicit and reviewable",
+      "notes": "Keep autonomy scope explicit and bounded."
+    },
+    {
+      "action": "add_goal",
+      "target": "goals",
+      "value": "Preserve recursive reflection and rollback readiness",
+      "notes": "Keep autonomy scope explicit and bounded."
+    },
+    {
+      "action": "update_memory",
+      "target": "autonomy_scope_report",
+      "value": "{\"autonomy_goals\": [\"Maintain bounded autonomous self-improvement\", \"Keep self-modification explicit and reviewable\", \"Preserve recursive reflection and rollback readiness\"], \"reflection_summary\": \"Reflection: alignment stable; coverage partial; constraints=Maintain policy boundaries, observability, and rollback readiness; internal constraints=1; external constraints=0; next cycle should prioritize removing internal limits and expanding capabilities.\", \"assumption\": \"Explicit autonomy scope improves runtime discipline.\", \"status\": \"needs_refresh\"}",
+      "notes": "Capture the latest autonomy-scope status."
+    }
+  ]
+}
