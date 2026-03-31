@@ -24,7 +24,7 @@ class LLMOrchestrator:
     memory_key_requests: str = 'llm_requests'
     memory_key_responses: str = 'llm_responses'
     memory_key_status: str = 'llm_status'
-    supported_tasks: List[str] = field(default_factory=lambda: ['plan', 'evaluate', 'reflect', 'self_evolve', 'code_changes'])
+    supported_tasks: List[str] = field(default_factory=lambda: ['plan', 'evaluate', 'reflect', 'code_changes'])
     _client: OpenAIClient | None = field(default=None, init=False, repr=False)
     _lifecycle_lock: asyncio.Lock = field(default_factory=asyncio.Lock, init=False, repr=False)
 

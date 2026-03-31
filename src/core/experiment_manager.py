@@ -81,6 +81,7 @@ def _normalize_code_changes_paths(code_changes: List[CodeChange], repo_root: Pat
 
 
 _DEFAULT_EVALUATOR_REQUIRED_PATHS = ("src", "tests")
+_REQUIRED_EVALUATOR_METRICS_FIELDS = ("compile_success", "tests_success", "tests_skipped")
 
 
 def _materialization_paths_for_candidate(
@@ -119,6 +120,17 @@ def _candidate_paths(code_changes: List[CodeChange], repo_root: Path) -> list[st
             continue
         candidate_paths.append(path)
     return candidate_paths
+
+
+def _validate_evaluator_payload(payload: Dict[str, Any]) -> str | None:
+    missing_fields = [
+        field_name
+        for field_name in _REQUIRED_EVALUATOR_METRICS_FIELDS
+        if field_name not in payload
+    ]
+    if missing_fields:
+        return f"missing_required_metrics:{','.join(missing_fields)}"
+    return None
 
 
 @dataclass
@@ -186,6 +198,17 @@ class ExperimentManager:
                         and cached.get("repo_hash") == repo_hash
                         and cached.get("code_hash") == code_hash
                     ):
+                        validation_error = _validate_evaluator_payload(metrics)
+                        if validation_error:
+                            malformed_metrics = dict(metrics)
+                            malformed_metrics.setdefault("reason", validation_error)
+                            return candidate.id, {
+                                "metrics": malformed_metrics,
+                                "accepted": False,
+                                "reason": "malformed_metrics",
+                                "cached": True,
+                                "error": validation_error,
+                            }, None, None
                         accepted, reason = should_accept(metrics, baseline_metrics)
                         return candidate.id, {
                             "metrics": metrics,
@@ -251,6 +274,16 @@ class ExperimentManager:
                                 }, None, None
                             payload.setdefault("duration_sec", elapsed)
                             payload.setdefault("timed_out", False)
+                            validation_error = _validate_evaluator_payload(payload)
+                            if validation_error:
+                                payload.setdefault("reason", validation_error)
+                                return candidate.id, {
+                                    "metrics": payload,
+                                    "accepted": False,
+                                    "reason": "malformed_metrics",
+                                    "cached": False,
+                                    "error": validation_error,
+                                }, None, None
                             accepted, reason = should_accept(payload, baseline_metrics)
                             return candidate.id, {
                                 "metrics": payload,

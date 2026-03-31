@@ -28,3 +28,14 @@ Prompts should request structured JSON for:
 - evaluations,
 - reflections,
 - code-change proposals.
+
+## Supported runtime tasks
+
+`LLMOrchestrator` currently supports exactly these task keys:
+
+- `plan`
+- `evaluate`
+- `reflect`
+- `code_changes`
+
+Each task must map to an explicit runtime path and fallback payload.
