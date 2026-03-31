@@ -91,12 +91,8 @@ async def evaluate_async(
         tests_cmd = [
             sys.executable,
             "-m",
-            "unittest",
-            "discover",
-            "-s",
-            str(workspace_path / "tests"),
-            "-t",
-            str(workspace_path),
+            "pytest",
+            "-q",
         ]
         (
             tests_returncode,
